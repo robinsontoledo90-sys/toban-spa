@@ -111,6 +111,11 @@
   .floating-wa { position:fixed; z-index:25; right:21px; bottom:21px; border:1px solid #cfd9cf; padding:12px 16px; display:flex; align-items:center; gap:9px; background:white; color:#5c725e; box-shadow:0 12px 30px rgba(10,49,28,.14); border-radius:99px; font-size:12px; font-weight:800; }
   .floating-wa svg { width:20px; height:20px; color:#519e62; }
   .floating-wa span { max-width:125px; }
+  .coverage-slideshow { padding:0; position:relative; min-height:390px; background:#e7efdc; isolation:isolate; }
+  .coverage-slide { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .8s ease; }
+  .coverage-slide.is-active { opacity:1; z-index:1; }
+  .coverage-slide-label { position:absolute; bottom:15px; left:15px; right:15px; z-index:2; display:flex; justify-content:space-between; gap:12px; padding:12px 15px; border-radius:12px; background:rgba(9,41,34,.82); color:white; font-size:12px; font-weight:700; }
+  @media(prefers-reduced-motion:reduce) { .coverage-slide { transition:none; } }
   @media(max-width:980px) { .nav-links { gap:18px; } .nav-cta { display:none; } .hero-inner { gap:15px; } .hero h1 { font-size:51px; } .coverage-layout { gap:35px; } .contact-inner { gap:35px; } }
   @media(max-width:740px) { .container { width:min(100% - 36px,1180px); } .nav { height:73px; } .brand-logo { width:44px; height:44px; } .brand-name { font-size:19px; } .menu-button { display:flex; } .nav-links { display:none; position:absolute; top:73px; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:#fff; border-bottom:1px solid #e2e8df; box-shadow:0 14px 20px rgba(0,0,0,.07); padding:10px 18px 18px; } .nav-links.open { display:flex; } .nav-links a { padding:13px; } .hero-inner { grid-template-columns:1fr; padding:65px 0 65px; gap:36px; } .hero h1 { font-size:clamp(42px,9vw,62px); } .hero p { font-size:15px; } .hero-visual { min-height:310px; } .hero-visual:before { width:330px; height:330px; } .brand-panel { width:270px; padding:10px 12px; border-radius:22px; } .brand-panel img { max-height:238px; } .brand-panel .panel-caption { font-size:9px; } .services,.coverage,.contact { padding:70px 0; } .service-grid { grid-template-columns:1fr; } .service-card { min-height:0; } .coverage-layout,.about-inner,.contact-inner { grid-template-columns:1fr; gap:37px; } .map-card { min-height:320px; } .about { padding:65px 0; } .footer-inner { align-items:flex-start; flex-direction:column; } .floating-wa { right:13px; bottom:13px; } }
   @media(max-width:480px) { .hero-actions { align-items:stretch; flex-direction:column; } .hero-actions .btn { width:100%; } .hero-meta { gap:13px; flex-direction:column; } .field-grid { grid-template-columns:1fr; gap:0; } .form-card { padding:23px; } .floating-wa span { display:none; } }
@@ -125,7 +130,7 @@
       <div><div class="brand-name">TOBAN <small>SpA</small></div><p>Socios en lugares remotos</p></div>
     </a>
     <nav class="nav-links" id="main-nav" aria-label="Navegación principal">
-      <a href="#servicios">Servicios</a><a href="#cobertura">Cobertura</a><a href="#galeria">Galería</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
+      <a href="#servicios">Servicios</a><a href="#cobertura">Cobertura</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
     </nav>
     <a href="#contacto" class="btn btn-dark nav-cta">Pedir cotización <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
     <button class="menu-button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav" id="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
@@ -161,25 +166,24 @@
     </section>
     <section class="coverage" id="cobertura">
      <div class="container coverage-layout">
-      <div class="map-card" style="padding:0;min-height:390px" aria-label="Transporte de baños químicos TOBAN en terreno">
-        <img src="imagenes/transporte-banos-azules.webp" alt="Camión TOBAN transportando baños químicos en el desierto" loading="lazy" style="display:block;width:100%;height:390px;object-fit:cover">
+      <div class="map-card coverage-slideshow" aria-label="Fotografías de los trabajos de TOBAN SpA en terreno">
+          <img class="coverage-slide is-active" src="imagenes/camion-succion.webp" alt="Camión de succión de TOBAN" loading="eager" fetchpriority="high">
+          <img class="coverage-slide" src="imagenes/equipo-succion.webp" alt="Equipo de succión de TOBAN" loading="lazy">
+          <img class="coverage-slide" src="imagenes/transporte-banos-azules.webp" alt="Transporte de baños químicos en el desierto" loading="lazy">
+          <img class="coverage-slide" src="imagenes/traslado-faena.webp" alt="Traslado de baños químicos hacia una faena" loading="lazy">
+          <img class="coverage-slide" src="imagenes/transporte-estanques.webp" alt="Camión de transporte de estanques" loading="lazy">
+          <img class="coverage-slide" src="imagenes/banos-instalados.webp" alt="Baños químicos instalados en terreno" loading="lazy">
+          <img class="coverage-slide" src="imagenes/instalacion-en-faena.webp" alt="Instalación sanitaria en faena" loading="lazy">
+          <img class="coverage-slide" src="imagenes/unidades-disponibles.webp" alt="Unidades de baños químicos" loading="lazy">
+          <img class="coverage-slide" src="imagenes/operacion-remota.webp" alt="Operación de TOBAN en un lugar remoto" loading="lazy">
+          <img class="coverage-slide" src="imagenes/bano-en-quebrada.webp" alt="Baño químico instalado en una quebrada" loading="lazy">
+        <div class="coverage-slide-label" aria-hidden="true">Trabajos reales de TOBAN SpA <span id="coverage-slide-count">1 / 10</span></div>
       </div>
       <div>
         <div class="section-head" style="margin-bottom:0"><div class="eyebrow">Dónde trabajamos</div><h2>Tarapacá es nuestro territorio.</h2><p>Nos enfocamos en las necesidades sanitarias de clientes de la Región de Tarapacá, incluyendo proyectos y sectores apartados.</p><p style="margin-top:16px">Cada solicitud se evalúa según la ubicación, accesibilidad y características del servicio requerido.</p></div>
         <ul class="cover-list"><li><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Cobertura enfocada en Tarapacá</li><li><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Evaluación de sectores de difícil acceso</li><li><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg> Soluciones según las necesidades del proyecto</li></ul>
       </div>
      </div>
-    </section>
-    <section class="services" id="galeria" style="padding:80px 0">
-      <div class="container">
-        <div class="section-head"><div class="eyebrow">TOBAN en terreno</div><h2>Nuestros trabajos reales</h2><p>Conoce nuestros equipos y las operaciones de traslado, instalación y mantención de soluciones sanitarias en faenas y lugares remotos.</p></div>
-        <div class="service-grid">
-          <a class="service-card" href="galeria.html" style="padding:0;min-height:0;overflow:hidden;display:block"><img src="imagenes/camion-succion.webp" alt="Camión de succión de TOBAN" loading="lazy" style="width:100%;height:230px;object-fit:cover;display:block"><div style="padding:20px 24px"><h3 style="margin:0">Equipos de succión</h3></div></a>
-          <a class="service-card" href="galeria.html" style="padding:0;min-height:0;overflow:hidden;display:block"><img src="imagenes/transporte-banos-azules.webp" alt="Transporte de baños químicos en terreno" loading="lazy" style="width:100%;height:230px;object-fit:cover;display:block"><div style="padding:20px 24px"><h3 style="margin:0">Transporte a faenas</h3></div></a>
-          <a class="service-card" href="galeria.html" style="padding:0;min-height:0;overflow:hidden;display:block"><img src="imagenes/bano-en-quebrada.webp" alt="Baño químico TOBAN instalado en una quebrada" loading="lazy" style="width:100%;height:230px;object-fit:cover;display:block"><div style="padding:20px 24px"><h3 style="margin:0">Instalaciones remotas</h3></div></a>
-        </div>
-        <p style="margin-top:30px"><a class="btn btn-dark" href="galeria.html">Ver las 10 fotografías de TOBAN →</a></p>
-      </div>
     </section>
     <section class="about" id="nosotros">
       <div class="container about-inner"><div><div class="eyebrow" style="color:#648b3d;margin-bottom:16px">Quiénes somos</div><h2>Una empresa cercana, comprometida con cada trabajo.</h2></div><p>En <strong>TOBAN SpA</strong> creemos que un buen servicio comienza escuchando a nuestros clientes. Somos una empresa pequeña que apuesta por la responsabilidad, el trato directo y la búsqueda de soluciones sanitarias para los desafíos de trabajar en terreno. <strong>Socios en lugares remotos</strong> es más que nuestro lema: es la forma en que queremos acompañar cada proyecto.</p></div>
@@ -204,7 +208,7 @@
       </div>
     </section>
   </main>
-  <footer class="footer"><div class="container footer-inner"><div><div class="footer-title">TOBAN SpA</div><p>Socios en lugares remotos · Región de Tarapacá, Chile</p></div><div class="footer-nav"><a href="#servicios">Servicios</a><a href="#cobertura">Cobertura</a><a href="galeria.html">Galería</a><a href="mailto:negocio@toban.cl">negocio@toban.cl</a><span>© <span id="year"></span> TOBAN SpA</span></div></div></footer>
+  <footer class="footer"><div class="container footer-inner"><div><div class="footer-title">TOBAN SpA</div><p>Socios en lugares remotos · Región de Tarapacá, Chile</p></div><div class="footer-nav"><a href="#servicios">Servicios</a><a href="#cobertura">Cobertura</a><a href="mailto:negocio@toban.cl">negocio@toban.cl</a><span>© <span id="year"></span> TOBAN SpA</span></div></div></footer>
   <a class="floating-wa" href="https://wa.me/56965076814?text=Hola%20TOBAN%20SpA%2C%20quiero%20solicitar%20una%20cotizaci%C3%B3n." title="Solicitar cotización por WhatsApp" aria-label="Solicitar cotización a TOBAN SpA por WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.8 7.3L3 20l1.4-5.2A8.5 8.5 0 1 1 21 11.5Z"/></svg> <span>Cotizar por WhatsApp</span></a>
   <script>
    const nav=document.getElementById('main-nav');
@@ -212,6 +216,17 @@
    menu.addEventListener('click',()=>{let open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');});
    nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
    document.getElementById('year').textContent=new Date().getFullYear();
+   const coverageSlides=Array.from(document.querySelectorAll('.coverage-slide'));
+   const coverageCounter=document.getElementById('coverage-slide-count');
+   if(coverageSlides.length>1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+     let currentSlide=0;
+     setInterval(()=>{
+       coverageSlides[currentSlide].classList.remove('is-active');
+       currentSlide=(currentSlide+1)%coverageSlides.length;
+       coverageSlides[currentSlide].classList.add('is-active');
+       coverageCounter.textContent=(currentSlide+1)+' / '+coverageSlides.length;
+     },4500);
+   }
    document.getElementById('quote-form').addEventListener('submit',function(e){
      e.preventDefault();
      if(!this.reportValidity())return;
